@@ -10,6 +10,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
   
+  <!-- Canvas Confetti Kütüphanesi -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,29 +20,60 @@
   <div class="sparkles-container" id="sparkles-container" aria-hidden="true"></div>
   <div class="fairy-dust" aria-hidden="true"></div>
 
+  <!-- Sağ Üst Köşe Müzik Aç/Kapat Butonu -->
+  <div class="music-controller">
+    <button class="music-toggle-btn" id="music-toggle-btn" title="Kutlama Müziğini Aç 🎵" aria-label="Müzik Aç/Kapat">
+      <span class="music-icon" id="music-icon">🔇</span>
+      <span class="music-note-anim" id="music-note-anim">🎵</span>
+    </button>
+    <a href="https://www.youtube.com/watch?v=n2OiQTYeCvM&list=RDn2OiQTYeCvM&start_radio=1" target="_blank" rel="noopener noreferrer" class="music-yt-link" title="YouTube'da Aç ↗">
+      ▶
+    </a>
+  </div>
+
+  <!-- Gizli YouTube Çalar (iframe) -->
+  <div id="youtube-player-container" class="youtube-player-hidden" aria-hidden="true"></div>
+
   <!-- Ana Kapsayıcı -->
   <main class="page-container">
     
     <!-- 1. BÖLÜM: HERO -->
     <section id="hero" class="fairy-section hero-section">
       <div class="card glass-card hero-card">
-        <div class="badge-pill">🌸 Harika Bir Haberimiz Var! ✨</div>
-        <h1 class="hero-title">Tebrikler En Güzel Kalpli İnsan! 🎉</h1>
-        <p class="hero-subtitle">Yeni işin, yeni başarın ve parıldayan geleceğin kutlu olsun!</p>
+        <div class="badge-pill">🌸 Şampiyonun Yeni Macerası Başlıyor! ✨</div>
         
+        <!-- Harf harf zıplayan başlık -->
+        <h1 class="hero-title bounce-title" id="bounce-title" aria-label="Maraş'ın En Çıtır Tarhanası İŞE GİRDİ!">
+          <!-- JS harfleri buraya zıplayan span'lar olarak yerleştirecek -->
+          <span class="title-fallback">Maraş'ın En Çıtır Tarhanası İŞE GİRDİ!</span>
+        </h1>
+        
+        <p class="hero-subtitle">Ceryen Mühendis göreve hazır ✨</p>
+        
+        <!-- Karakter & Sihirli Peri Aynası Alanı -->
         <div class="character-slot">
-          <!-- karakter.png eklendiğinde burada gösterilecek -->
-          <div class="character-wrapper" id="character-wrapper">
-            <img src="karakter.png" alt="Kutlama Karakteri" class="character-img" onerror="this.style.display='none'; document.getElementById('character-placeholder').style.display='flex';">
-            <div id="character-placeholder" class="character-placeholder">
-              <span class="placeholder-icon">🧚‍♀️</span>
-              <span class="placeholder-text">Karakterin yeri hazır ✨<br><small>(karakter.png bekleniyor)</small></span>
+          <!-- Karakterin çevresinde süzülen peri çiçekleri ve yıldızlar -->
+          <div class="orbiting-elements" aria-hidden="true">
+            <span class="orbit-item item-1">🪻</span>
+            <!-- Gizli mektup açan sihirli çiçek -->
+            <button class="orbit-item item-2 secret-flower-btn" id="secret-flower-btn" title="Gizli peri çiçeği ✨ (Tıkla!)" aria-label="Gizli peri çiçeği">🌸</button>
+            <span class="orbit-item item-3">✨</span>
+            <span class="orbit-item item-4">🌷</span>
+            <span class="orbit-item item-5">💫</span>
+            <span class="orbit-item item-6">💖</span>
+          </div>
+
+          <div class="magic-mirror-frame" id="character-tap-area" title="Karaktere 3 kez dokunursan ne olur? ✨">
+            <div class="mirror-inner">
+              <img src="karakter.png" alt="Ceryen Mühendis Peri Maskotu" class="character-img" id="mascot-img">
             </div>
+            <div class="mirror-sparkle-tag">🧚 Mühendis Ceryen <span class="egg-hint">(3x tıkla 💌)</span></div>
           </div>
         </div>
 
-        <button class="fairy-btn" id="start-journey-btn">
-          <span>Kutlamayı Başlat ✨</span>
+        <!-- Nabız gibi atan pembe buton -->
+        <button class="fairy-btn pulse-btn" id="start-journey-btn">
+          <span>Sürprizi aç 💌</span>
         </button>
       </div>
     </section>
@@ -49,30 +83,182 @@
       <div class="section-header">
         <span class="section-tag">🤍 Kalbimizden Bir Parça</span>
         <h2 class="section-title">Bizim Hikâyemiz</h2>
-        <p class="section-desc">Kahkahalar, dertleşmeler ve unutulmaz anılarla dolu yolculuğumuz...</p>
+        <p class="section-desc">O unutulmaz an ve kalbimizi ısıtan kutlama sohbetimiz...</p>
       </div>
+
       <div class="card glass-card story-card">
-        <div class="placeholder-box">
-          <span class="box-icon">📖</span>
-          <h3>Anılar ve Özel Mesajlar</h3>
-          <p>Bu alanda beraber geçtiğimiz yollar ve tatlı hatıralarımız yer alacak.</p>
+        <!-- WhatsApp Tarzı Peri Sohbet Başlığı -->
+        <div class="chat-header">
+          <div class="chat-user-info">
+            <div class="chat-avatar">
+              <span class="avatar-emoji">🧚‍♀️</span>
+              <span class="status-dot"></span>
+            </div>
+            <div class="chat-user-text">
+              <h4 class="chat-name">İkkan & En Yakın Dost 💖</h4>
+              <span class="chat-status">çevrimiçi • kutlama modunda ✨</span>
+            </div>
+          </div>
+          <button class="replay-chat-btn" id="replay-chat-btn" title="Sohbeti Baştan Oynat">
+            <span>🔄</span>
+          </button>
+        </div>
+
+        <!-- Sohbet Akışı -->
+        <div class="chat-messages-container" id="chat-messages-container">
+          <div class="chat-date-pill"><span>Bugün • Hayatımızın En Güzel Günü 🌸</span></div>
+          
+          <!-- Sohbet Balonları (JS ile sırayla 'yazıyor...' animasyonuyla gelecek) -->
+          <div class="chat-bubble-stream" id="chat-bubble-stream">
+            <!-- Dinamik olarak JS tarafından canlandırılacak mesajlar -->
+          </div>
+
+          <!-- Canlı Yazıyor Göstergesi -->
+          <div class="typing-indicator-wrapper" id="typing-indicator" style="display: none;">
+            <div class="typing-bubble">
+              <span class="typing-name" id="typing-name">İkkan</span>
+              <div class="typing-dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- 3. BÖLÜM: ZORLUK YOLCULUĞU -->
-    <section id="journey" class="fairy-section">
+    <!-- 3. BÖLÜM: BACIM BÜTÜN ZORLUKLARI AŞTI -->
+    <section id="journey" class="fairy-section journey-section">
       <div class="section-header">
-        <span class="section-tag">💪 Asla Pes Etmeyen Ruhun</span>
-        <h2 class="section-title">Zorluk Yolculuğu</h2>
-        <p class="section-desc">Çalıştın, çabaladın, inandın ve başardın!</p>
-      </div>
-      <div class="card glass-card journey-card">
-        <div class="placeholder-box">
-          <span class="box-icon">🌟</span>
-          <h3>Adım Adım Başarıya</h3>
-          <p>Mülakatlar, uykusuz geceler, stresli anlar ve gelen o mutlu "Kabul Edildiniz" anı!</p>
+        <span class="section-tag">👑 Efsanevi Diva Yürüyüşü ✨</span>
+        <h2 class="section-title">Bacım Bütün Zorlukları Aştı</h2>
+        <div class="diva-quote-pill">
+          <span>✨ "bacım divalıkta level attladııı çekilin yoldan ümisss geliyor" 💅</span>
         </div>
+        <p class="section-hint">Rozetlere dokun, arkasındaki özel notları aç 💌</p>
+      </div>
+
+      <div class="card glass-card journey-path-card">
+        <!-- Çiçekli Kıvrımlı Patika Çizgisi (Arka Plan) -->
+        <div class="curvy-flower-path" aria-hidden="true">
+          <svg class="path-svg" viewBox="0 0 100 800" preserveAspectRatio="none">
+            <path d="M 50,0 Q 80,100 50,200 T 50,400 T 50,600 T 50,800" class="path-line" />
+            <path d="M 50,0 Q 80,100 50,200 T 50,400 T 50,600 T 50,800" class="path-glow" />
+          </svg>
+          <span class="path-flower pf-1">🌸</span>
+          <span class="path-flower pf-2">🪻</span>
+          <span class="path-flower pf-3">🌷</span>
+          <span class="path-flower pf-4">🌸</span>
+          <span class="path-flower pf-5">✨</span>
+        </div>
+
+        <!-- Patika Üzerindeki Rozet Durakları -->
+        <div class="milestones-list" id="milestones-list">
+          
+          <!-- 1. Rozet: Okul / Sınavlar -->
+          <div class="milestone-item item-left" data-milestone="1">
+            <div class="milestone-badge-btn" role="button" tabindex="0" aria-expanded="false">
+              <div class="badge-icon-wrapper">
+                <span class="badge-icon">📚</span>
+                <span class="badge-sparkle">✨</span>
+              </div>
+              <div class="badge-content">
+                <span class="badge-step-tag">1. Durak • Okul & Sınavlar</span>
+                <h4 class="badge-title">Ege hapisanesi bittiiii</h4>
+              </div>
+              <span class="expand-indicator">＋</span>
+            </div>
+            <div class="milestone-note">
+              <div class="note-inner">
+                <span class="note-pin">🌸</span>
+                <p>O vizeler, sabahlamalar, "bu okul asla bitmeyecek" isyanları geride kaldı bacım! Ege'nin kapısından bir kraliçe gibi mezun olup çıktın! 🎓💅</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Rozet: CV'ler ve Başvurular -->
+          <div class="milestone-item item-right" data-milestone="2">
+            <div class="milestone-badge-btn" role="button" tabindex="0" aria-expanded="false">
+              <div class="badge-icon-wrapper">
+                <span class="badge-icon">📝</span>
+                <span class="badge-sparkle">🌸</span>
+              </div>
+              <div class="badge-content">
+                <span class="badge-step-tag">2. Durak • Başvuru Maratonu</span>
+                <h4 class="badge-title">Kaç tane başvuru yaptın bacıııı</h4>
+              </div>
+              <span class="expand-indicator">＋</span>
+            </div>
+            <div class="milestone-note">
+              <div class="note-inner">
+                <span class="note-pin">💌</span>
+                <p>LinkedIn'in altını üstüne getirdiğin, her gün onlarca maile baktığın o stresli günler... Ama bir saniye bile pes etmedin, o inatçı azminle gurur duyuyorum! 💼✨</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Rozet: Mülakat -->
+          <div class="milestone-item item-left" data-milestone="3">
+            <div class="milestone-badge-btn" role="button" tabindex="0" aria-expanded="false">
+              <div class="badge-icon-wrapper">
+                <span class="badge-icon">😰</span>
+                <span class="badge-sparkle">💅</span>
+              </div>
+              <div class="badge-content">
+                <span class="badge-step-tag">3. Durak • Kritik Görüşme</span>
+                <h4 class="badge-title">Slayyledinn Diva</h4>
+              </div>
+              <span class="expand-indicator">＋</span>
+            </div>
+            <div class="milestone-note">
+              <div class="note-inner">
+                <span class="note-pin">👑</span>
+                <p>Heyecandan kalbin pır pır atarken o toplantıya girdin ve zekanla, duruşunla ortamı yıktın geçtin! Slay queen dedikleri tam olarak sensin işte! 🔥💅</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Rozet: İŞE ALINDIN! (En Büyük & Parıltılı) -->
+          <div class="milestone-item item-champion" data-milestone="4">
+            <div class="milestone-badge-btn champion-btn" role="button" tabindex="0" aria-expanded="false">
+              <div class="badge-icon-wrapper champion-icon-wrapper">
+                <span class="badge-icon champion-icon">🎉</span>
+                <span class="champion-glow-ring"></span>
+              </div>
+              <div class="badge-content">
+                <span class="champion-trophy-tag">🏆 BÜYÜK ZAFER</span>
+                <h3 class="champion-title">İŞE ALINDIN! ✨🥂</h3>
+              </div>
+              <span class="expand-indicator">＋</span>
+            </div>
+            <div class="milestone-note champion-note">
+              <div class="note-inner">
+                <span class="note-pin">💖</span>
+                <p>Ve o efsane teklif geldi! Emeklerinin, uykusuz gecelerinin karşılığı altın tepside! Şimdi herkes önünden çekilsin, diva sahaya adımını attı! 🥂🌸</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Finiş Çizgisi & El Sallayan Minik Karakter -->
+        <div class="finish-line-wrapper">
+          <div class="finish-ribbon">
+            <span>🏁 FİNİŞ ÇİZGİSİ • ŞAMPİYON GELDİ 🌸</span>
+          </div>
+
+          <div class="mini-character-stage">
+            <div class="speech-bubble-mini">
+              <span>"Tüm zorluklar bitti bacım, başardık! 💖"</span>
+            </div>
+            <div class="mini-char-halo">
+              <img src="karakter.png" alt="El Sallayan Ceryen" class="mini-char-img">
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -100,13 +286,46 @@
         <p class="final-text">
           Yeni işinde harika işler başaracağına adım gibi eminim. İyi ki varsın!
         </p>
-        <button class="fairy-btn celebrate-btn" id="celebrate-btn">
-          <span>Konfeti Yağmuru Patlat! 🎊</span>
+        <button class="fairy-btn heart-burst-btn" id="heart-burst-btn">
+          <span>KALBİNİ PATLAT 💖</span>
         </button>
       </div>
     </section>
 
   </main>
+
+  <!-- BÜYÜK KUTLAMA OVERLAY ("BACIM İŞE GİRDİ, YAŞASIN!!! 🎉") -->
+  <div class="celebration-overlay" id="celebration-overlay" aria-hidden="true" style="display: none;">
+    <div class="celebration-modal-card">
+      <div class="celebration-particles-burst">✨🌸💖⭐🎉</div>
+      <h2 class="celebration-shout-title">
+        BACIM İŞE GİRDİ, YAŞASIN!!! 🎉
+      </h2>
+      <p class="celebration-shout-desc">
+        Tüm dünya duysun, bu başarı senin hakkındı! 🥂💖
+      </p>
+      <button class="fairy-btn close-celebration-btn" id="close-celebration-btn">
+        <span>Kutlamaya Devam Et 🥳✨</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- GİZLİ SÜRPRİZ MEKTUP MODAL -->
+  <div class="secret-modal-backdrop" id="secret-letter-modal" aria-hidden="true" style="display: none;">
+    <div class="secret-letter-card">
+      <button class="close-letter-btn" id="close-letter-btn" aria-label="Kapat">✕</button>
+      <div class="letter-stamp">💌✨</div>
+      <h3 class="letter-header">Seni çok seviyorum, seninle gurur duyuyorum 🥹</h3>
+      <div class="letter-content">
+        <p>
+          Canım Ümis'im biz ne ara bu kadar büyüdükkk seninle halay çektiğimiz liseden buralara nasıl geldik .Sen cerayan mühendisi oldun elektiriğinle yaktın izmirii bacıların bacısıı
+        </p>
+      </div>
+      <div class="letter-footer">
+        <span>Sonsuza dek en yakın dostun 🤍🧚‍♀️</span>
+      </div>
+    </div>
+  </div>
 
   <footer class="fairy-footer">
     <p>En yakın dostundan sevgiyle ve peri tozuyla hazırlandı 🧚✨</p>
