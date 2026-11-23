@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Tebrikler! ✨ Peri Bahçesi Kutlaması</title>
+  <title>Maraş'ın En Çıtır Tarhanası İşe Girdi! ✨ Peri Bahçesi Masalı</title>
   
-  <!-- Google Fonts: Baloo 2 (Bubbly/Şirin Başlıklar), Comfortaa, Nunito (Metinler) & Caveat (El yazısı) - 100% Türkçe Destekli -->
+  <!-- Google Fonts: Baloo 2, Comfortaa, Nunito & Caveat (100% Türkçe Destekli) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Comfortaa:wght@600;700&family=Nunito:wght@400;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
@@ -20,31 +20,49 @@
   <div class="sparkles-container" id="sparkles-container" aria-hidden="true"></div>
   <div class="fairy-dust" aria-hidden="true"></div>
 
-  <!-- Sağ Üst Köşe Müzik Aç/Kapat Butonu -->
-  <div class="music-controller">
-    <button class="music-toggle-btn" id="music-toggle-btn" title="Kutlama Müziğini Aç 🎵" aria-label="Müzik Aç/Kapat">
-      <span class="music-icon" id="music-icon">🔇</span>
-      <span class="music-note-anim" id="music-note-anim">🎵</span>
+  <!-- Üst Bar: Geri Butonu + 4 Aşamalı Çiçek Göstergesi + Müzik -->
+  <header class="top-nav-bar">
+    <button class="nav-back-btn" id="nav-back-btn" aria-label="Önceki Aşamaya Dön" style="visibility: hidden;">
+      <span>← Geri</span>
     </button>
-    <a href="https://www.youtube.com/watch?v=n2OiQTYeCvM&list=RDn2OiQTYeCvM&start_radio=1" target="_blank" rel="noopener noreferrer" class="music-yt-link" title="YouTube'da Aç ↗">
-      ▶
-    </a>
-  </div>
+
+    <div class="stepper-container" id="stepper-container" aria-label="Aşama Göstergesi">
+      <button class="step-flower-btn active" data-step="1" title="1. Aşama: Karşılama">🌸</button>
+      <div class="step-line"></div>
+      <button class="step-flower-btn" data-step="2" title="2. Aşama: Bizim Hikâyemiz">🌸</button>
+      <div class="step-line"></div>
+      <button class="step-flower-btn" data-step="3" title="3. Aşama: Zorluk Yolculuğu">🌸</button>
+      <div class="step-line"></div>
+      <button class="step-flower-btn" data-step="4" title="4. Aşama: Büyük Final">🌸</button>
+    </div>
+
+    <!-- Müzik Aç/Kapat Butonu -->
+    <div class="music-controller">
+      <button class="music-toggle-btn" id="music-toggle-btn" title="Kutlama Müziğini Aç 🎵" aria-label="Müzik Aç/Kapat">
+        <span class="music-icon" id="music-icon">🔇</span>
+        <span class="music-note-anim" id="music-note-anim">🎵</span>
+      </button>
+      <a href="https://www.youtube.com/watch?v=n2OiQTYeCvM&list=RDn2OiQTYeCvM&start_radio=1" target="_blank" rel="noopener noreferrer" class="music-yt-link" title="YouTube'da Aç ↗">
+        ▶
+      </a>
+    </div>
+  </header>
 
   <!-- Gizli YouTube Çalar (iframe) -->
   <div id="youtube-player-container" class="youtube-player-hidden" aria-hidden="true"></div>
 
-  <!-- Ana Kapsayıcı -->
-  <main class="page-container">
+  <!-- Ana Kapsayıcı (4 Ekran SPA) -->
+  <main class="page-container" id="page-container">
     
-    <!-- 1. BÖLÜM: HERO -->
-    <section id="hero" class="fairy-section hero-section">
+    <!-- ==========================================
+         EKRAN 1: KARŞILAMA
+         ========================================== -->
+    <section id="screen-1" class="fairy-screen active">
       <div class="card glass-card hero-card">
-        <div class="badge-pill">🌸 Şampiyonun Yeni Macerası Başlıyor! ✨</div>
+        <div class="stage-tag-pill">🌸 1. Aşama • Şampiyonun Yeni Macerası ✨</div>
         
         <!-- Harf harf zıplayan başlık -->
         <h1 class="hero-title bounce-title" id="bounce-title" aria-label="Maraş'ın En Çıtır Tarhanası İŞE GİRDİ!">
-          <!-- JS harfleri buraya zıplayan span'lar olarak yerleştirecek -->
           <span class="title-fallback">Maraş'ın En Çıtır Tarhanası İŞE GİRDİ!</span>
         </h1>
         
@@ -52,95 +70,225 @@
         
         <!-- Karakter & Sihirli Peri Aynası Alanı -->
         <div class="character-slot">
-          <!-- Karakterin çevresinde süzülen peri çiçekleri ve yıldızlar -->
           <div class="orbiting-elements" aria-hidden="true">
             <span class="orbit-item item-1">🪻</span>
-            <!-- Gizli mektup açan sihirli çiçek -->
-            <button class="orbit-item item-2 secret-flower-btn" id="secret-flower-btn" title="Gizli peri çiçeği ✨ (Tıkla!)" aria-label="Gizli peri çiçeği">🌸</button>
+            <button class="orbit-item item-2 secret-flower-btn" id="secret-flower-btn-1" title="Gizli peri çiçeği ✨ (Tıkla!)" aria-label="Gizli peri çiçeği">🌸</button>
             <span class="orbit-item item-3">✨</span>
             <span class="orbit-item item-4">🌷</span>
             <span class="orbit-item item-5">💫</span>
             <span class="orbit-item item-6">💖</span>
           </div>
 
-          <div class="magic-mirror-frame" id="character-tap-area" title="Karaktere 3 kez dokunursan ne olur? ✨">
+          <div class="magic-mirror-frame character-tap-target" title="Karaktere 5 kez dokunursan ne olur? ✨">
             <div class="mirror-inner">
-              <img src="karakter.png" alt="Ceryen Mühendis Peri Maskotu" class="character-img" id="mascot-img">
+              <img src="karakter.png" alt="Ceryen Mühendis Peri Maskotu" class="character-img">
             </div>
-            <div class="mirror-sparkle-tag">🧚 Mühendis Ceryen <span class="egg-hint">(3x tıkla 💌)</span></div>
+            <div class="mirror-sparkle-tag">🧚 Mühendis Ceryen <span class="egg-hint">(5x tıkla 💌)</span></div>
           </div>
         </div>
 
         <!-- Nabız gibi atan pembe buton -->
-        <button class="fairy-btn pulse-btn" id="start-journey-btn">
+        <button class="fairy-btn pulse-btn" id="btn-to-screen-2">
           <span>Sürprizi aç 💌</span>
         </button>
       </div>
     </section>
 
-    <!-- 2. BÖLÜM: BİZİM HİKÂYEMİZ -->
-    <section id="our-story" class="fairy-section">
-      <div class="section-header">
-        <span class="section-tag">🤍 Kalbimizden Bir Parça</span>
-        <h2 class="section-title">Bizim Hikâyemiz</h2>
-        <p class="section-desc">O unutulmaz an ve kalbimizi ısıtan kutlama sohbetimiz...</p>
-      </div>
+    <!-- ==========================================
+         EKRAN 2: BİZİM HİKÂYEMİZ (MASAL KİTABI)
+         ========================================== -->
+    <section id="screen-2" class="fairy-screen">
+      <div class="card glass-card storybook-screen-card">
+        <div class="stage-tag-pill">📖 2. Aşama • Bizim Hikâyemiz ✨</div>
 
-      <div class="card glass-card story-card">
-        <!-- WhatsApp Tarzı Peri Sohbet Başlığı -->
-        <div class="chat-header">
-          <div class="chat-user-info">
-            <div class="chat-avatar">
-              <span class="avatar-emoji">🧚‍♀️</span>
-              <span class="status-dot"></span>
+        <div class="storybook-wrapper" id="storybook-wrapper">
+          <!-- Masaüstü & Dokunmatik Yön Butonları -->
+          <button class="book-nav-arrow arrow-prev" id="book-prev-btn" aria-label="Önceki Sayfa" title="Önceki Sayfa">‹</button>
+          <button class="book-nav-arrow arrow-next" id="book-next-btn" aria-label="Sonraki Sayfa" title="Sonraki Sayfa">›</button>
+
+          <!-- Kitap Kapsayıcısı -->
+          <div class="fairy-storybook" id="fairy-storybook">
+
+            <!-- KAPAK (Sayfa 0) -->
+            <div class="book-page book-cover active" data-page="0">
+              <div class="cover-ornament top-ornament">✨ 🌸 ✨</div>
+              <div class="cover-badge">MASAL KİTABI</div>
+              <h2 class="cover-title">Maraş'ın En Çıtır Tarhanası ve Ceryen Mühendis'in Masalı</h2>
+              
+              <div class="cover-char-slot">
+                <div class="cover-char-halo">
+                  <img src="karakter.png" alt="Küçük Peri Maskot" class="cover-char-img">
+                </div>
+              </div>
+
+              <div class="cover-hint-wrapper">
+                <span class="cover-hint-text">Sayfayı çevirmek için kaydır 🌸</span>
+                <button class="fairy-btn open-book-btn" id="open-book-btn">
+                  <span>Kitabı Aç 📖✨</span>
+                </button>
+              </div>
+              <div class="cover-ribbon">🎗️ Sonsuza dek dostluk</div>
             </div>
-            <div class="chat-user-text">
-              <h4 class="chat-name">İkkan & En Yakın Dost 💖</h4>
-              <span class="chat-status">çevrimiçi • kutlama modunda ✨</span>
-            </div>
-          </div>
-          <button class="replay-chat-btn" id="replay-chat-btn" title="Sohbeti Baştan Oynat">
-            <span>🔄</span>
-          </button>
-        </div>
 
-        <!-- Sohbet Akışı -->
-        <div class="chat-messages-container" id="chat-messages-container">
-          <div class="chat-date-pill"><span>Bugün • Hayatımızın En Güzel Günü 🌸</span></div>
-          
-          <!-- Sohbet Balonları (JS ile sırayla 'yazıyor...' animasyonuyla gelecek) -->
-          <div class="chat-bubble-stream" id="chat-bubble-stream">
-            <!-- Dinamik olarak JS tarafından canlandırılacak mesajlar -->
-          </div>
-
-          <!-- Canlı Yazıyor Göstergesi -->
-          <div class="typing-indicator-wrapper" id="typing-indicator" style="display: none;">
-            <div class="typing-bubble">
-              <span class="typing-name" id="typing-name">İkkan</span>
-              <div class="typing-dots">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
+            <!-- SAYFA 1 -->
+            <div class="book-page" data-page="1">
+              <div class="page-corner corner-tl">🌸</div>
+              <div class="page-corner corner-tr">✨</div>
+              <div class="page-header-box">
+                <span class="page-chapter-title">Bir gün...</span>
+              </div>
+              <div class="parchment-note-box">
+                <span class="parchment-pin">🤍</span>
+                <p class="story-quote">"bir gün seninle Mabel Matiz konserine gidecegiz umarımm"</p>
+              </div>
+              <div class="page-footer-meta">
+                <span class="page-num">1 / 8 🌸</span>
               </div>
             </div>
-          </div>
 
+            <!-- SAYFA 2 -->
+            <div class="book-page" data-page="2">
+              <div class="page-corner corner-tl">🪻</div>
+              <div class="page-corner corner-tr">💖</div>
+              <div class="page-header-box">
+                <span class="page-chapter-title">Yıllar sonra...</span>
+              </div>
+              <div class="parchment-note-box">
+                <span class="parchment-pin">🌸</span>
+                <p class="story-quote">"yıllar sonra ceze yiyelimmmm"</p>
+              </div>
+              <div class="page-footer-meta">
+                <span class="page-num">2 / 8 🌸</span>
+              </div>
+            </div>
+
+            <!-- SAYFA 3 -->
+            <div class="book-page" data-page="3">
+              <div class="page-corner corner-tl">🌷</div>
+              <div class="page-corner corner-tr">⭐</div>
+              <div class="page-header-box">
+                <span class="page-chapter-title">Her zamanki gibi...</span>
+              </div>
+              <div class="parchment-note-box">
+                <span class="parchment-pin">💅</span>
+                <p class="story-quote">"yine sevimin mahalsizleri olalım"</p>
+              </div>
+              <div class="page-footer-meta">
+                <span class="page-num">3 / 8 🌸</span>
+              </div>
+            </div>
+
+            <!-- SAYFA 4 -->
+            <div class="book-page" data-page="4">
+              <div class="page-corner corner-tl">🌸</div>
+              <div class="page-corner corner-tr">💫</div>
+              <div class="page-header-box">
+                <span class="page-chapter-title">O eski günler...</span>
+              </div>
+              <div class="parchment-note-box">
+                <span class="parchment-pin">📚</span>
+                <p class="story-quote">"Eskisi gibi ders çalıştıgımız gün döndü teyze bize kızsın ders çalıştıgımız içinn"</p>
+              </div>
+              <div class="page-footer-meta">
+                <span class="page-num">4 / 8 🌸</span>
+              </div>
+            </div>
+
+            <!-- SAYFA 5 -->
+            <div class="book-page" data-page="5">
+              <div class="page-corner corner-tl">🪻</div>
+              <div class="page-corner corner-tr">✨</div>
+              <div class="page-header-box">
+                <span class="page-chapter-title">Ve sonra büyüdük...</span>
+              </div>
+              <div class="parchment-note-box">
+                <span class="parchment-pin">🚗</span>
+                <p class="story-quote">"Ehliyetiii aldınnn darısıııı arabaya"</p>
+              </div>
+              <div class="page-footer-meta">
+                <span class="page-num">5 / 8 🌸</span>
+              </div>
+            </div>
+
+            <!-- SAYFA 6 -->
+            <div class="book-page" data-page="6">
+              <div class="page-corner corner-tl">💖</div>
+              <div class="page-corner corner-tr">🌸</div>
+              <div class="page-header-box">
+                <span class="page-chapter-title">O gece...</span>
+              </div>
+              <div class="parchment-note-box">
+                <span class="parchment-pin">🍿</span>
+                <p class="story-quote">"Sabaha kadar yaprak dökümü izleyelim ama ben ferhundeciyimmm"</p>
+              </div>
+              <div class="page-footer-meta">
+                <span class="page-num">6 / 8 🌸</span>
+              </div>
+            </div>
+
+            <!-- SAYFA 7 -->
+            <div class="book-page" data-page="7">
+              <div class="page-corner corner-tl">👑</div>
+              <div class="page-corner corner-tr">💖</div>
+              <div class="page-header-box">
+                <span class="page-chapter-title">Ve en çok da...</span>
+              </div>
+              <div class="parchment-note-box">
+                <span class="parchment-pin">💌</span>
+                <p class="story-quote">"aşkk seni bulsun bacııı"</p>
+              </div>
+              <div class="page-footer-meta">
+                <span class="page-num">7 / 8 🌸</span>
+              </div>
+            </div>
+
+            <!-- SON SAYFA (Sayfa 8) -->
+            <div class="book-page book-final-page" data-page="8">
+              <div class="page-corner corner-tl">🎉</div>
+              <div class="page-corner corner-tr">✨</div>
+              
+              <div class="final-book-char-slot">
+                <div class="mini-char-halo">
+                  <img src="karakter.png" alt="El Sallayan Maskot" class="mini-char-img">
+                </div>
+              </div>
+
+              <h3 class="final-book-shout">
+                Devamı gelecek... yeni işte, yeni maceralarla 🌸
+              </h3>
+              
+              <div class="final-book-action">
+                <button class="fairy-btn pulse-btn" id="btn-to-screen-3">
+                  <span>Devam et 🌸</span>
+                </button>
+              </div>
+
+              <div class="page-footer-meta">
+                <span class="page-num">8 / 8 ✨</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="book-swipe-tip">
+          <span>👈 Sayfaları kaydırabilir ya da oklara basabilirsin 👉</span>
         </div>
       </div>
     </section>
 
-    <!-- 3. BÖLÜM: BACIM BÜTÜN ZORLUKLARI AŞTI -->
-    <section id="journey" class="fairy-section journey-section">
-      <div class="section-header">
-        <span class="section-tag">👑 Efsanevi Diva Yürüyüşü ✨</span>
+    <!-- ==========================================
+         EKRAN 3: BACIM BÜTÜN ZORLUKLARI AŞTI
+         ========================================== -->
+    <section id="screen-3" class="fairy-screen">
+      <div class="card glass-card journey-path-card">
+        <div class="stage-tag-pill">👑 3. Aşama • Efsanevi Diva Yürüyüşü ✨</div>
         <h2 class="section-title">Bacım Bütün Zorlukları Aştı</h2>
         <div class="diva-quote-pill">
           <span>✨ "bacım divalıkta level attladııı çekilin yoldan ümisss geliyor" 💅</span>
         </div>
         <p class="section-hint">Rozetlere dokun, arkasındaki özel notları aç 💌</p>
-      </div>
 
-      <div class="card glass-card journey-path-card">
         <!-- Çiçekli Kıvrımlı Patika Çizgisi (Arka Plan) -->
         <div class="curvy-flower-path" aria-hidden="true">
           <svg class="path-svg" viewBox="0 0 100 800" preserveAspectRatio="none">
@@ -220,7 +368,7 @@
             </div>
           </div>
 
-          <!-- 4. Rozet: İŞE ALINDIN! (En Büyük & Parıltılı) -->
+          <!-- 4. Rozet: İŞE ALINDIN! -->
           <div class="milestone-item item-champion" data-milestone="4">
             <div class="milestone-badge-btn champion-btn" role="button" tabindex="0" aria-expanded="false">
               <div class="badge-icon-wrapper champion-icon-wrapper">
@@ -249,7 +397,7 @@
             <span>🏁 FİNİŞ ÇİZGİSİ • ŞAMPİYON GELDİ 🌸</span>
           </div>
 
-          <div class="mini-character-stage">
+          <div class="mini-character-stage character-tap-target" title="Karaktere dokun 💌">
             <div class="speech-bubble-mini">
               <span>"Tüm zorluklar bitti bacım, başardık! 💖"</span>
             </div>
@@ -257,22 +405,90 @@
               <img src="karakter.png" alt="El Sallayan Ceryen" class="mini-char-img">
             </div>
           </div>
+
+          <!-- Ekran 4'e Geçiş Butonu -->
+          <div class="journey-action-slot">
+            <button class="fairy-btn pulse-btn" id="btn-to-screen-4">
+              <span>Son sürpriz 🎁</span>
+            </button>
+          </div>
         </div>
 
       </div>
     </section>
 
-    <!-- 4. BÖLÜM: FİNAL -->
-    <section id="final" class="fairy-section final-section">
+    <!-- ==========================================
+         EKRAN 4: BÜYÜK FİNAL
+         ========================================== -->
+    <section id="screen-4" class="fairy-screen">
       <div class="card glass-card final-card">
+        <div class="stage-tag-pill">🎉 4. Aşama • Büyük Kutlama & Final ✨</div>
+
         <span class="final-sparkle">💖✨</span>
         <h2 class="section-title">Seninle Gurur Duyuyorum!</h2>
         <p class="final-text">
-          Yeni işinde harika işler başaracağına adım gibi eminim. İyi ki varsın!
+          Yeni işinde harika işler başaracağına adım gibi eminim. İyi ki varsın bacıların bacısı!
         </p>
+
+        <!-- Büyük Patlatma Butonu -->
         <button class="fairy-btn heart-burst-btn" id="heart-burst-btn">
           <span>KALBİNİ PATLAT 💖</span>
         </button>
+
+        <!-- TARHANA KUPONLARI BÖLÜMÜ -->
+        <div class="tarhana-coupons-section">
+          <div class="section-header">
+            <span class="section-tag">🎟️ Maraş Çıtırı Ayrıcalıkları</span>
+            <h3 class="coupons-main-title">Tarhana Kuponları</h3>
+            <p class="section-desc">Kupona dokun, "Kullanıldı ✨" damgasını vur!</p>
+          </div>
+
+          <div class="coupons-grid">
+            <!-- Kupon 1 -->
+            <div class="coupon-ticket" tabindex="0" role="button">
+              <div class="coupon-decor-cut top-cut"></div>
+              <div class="coupon-decor-cut bottom-cut"></div>
+              <div class="coupon-header-mini">🌾 ÇITIR LEZZET KUPONU</div>
+              <h4 class="coupon-offer">1 Porsiyon Bol Çıtır Maraş Tarhanası</h4>
+              <p class="coupon-desc">Sıcak çay eşliğinde, dertleri unutturan en taze ikram.</p>
+              <div class="coupon-stamp" aria-hidden="true">KULLANILDI ✨</div>
+              <div class="coupon-tap-hint">Dokun ve Bozdur 👆</div>
+            </div>
+
+            <!-- Kupon 2 -->
+            <div class="coupon-ticket" tabindex="0" role="button">
+              <div class="coupon-decor-cut top-cut"></div>
+              <div class="coupon-decor-cut bottom-cut"></div>
+              <div class="coupon-header-mini">☕ MÜHENDİS MOLASI</div>
+              <h4 class="coupon-offer">Sınırsız Kahve & Dedikodu</h4>
+              <p class="coupon-desc">Maaş yattığında da yatmadığında da her zaman geçerli!</p>
+              <div class="coupon-stamp" aria-hidden="true">KULLANILDI ✨</div>
+              <div class="coupon-tap-hint">Dokun ve Bozdur 👆</div>
+            </div>
+
+            <!-- Kupon 3 -->
+            <div class="coupon-ticket" tabindex="0" role="button">
+              <div class="coupon-decor-cut top-cut"></div>
+              <div class="coupon-decor-cut bottom-cut"></div>
+              <div class="coupon-header-mini">🥂 DİVA KUTLAMASI</div>
+              <h4 class="coupon-offer">Yeni İş Şerefine Zafer Yemeği</h4>
+              <p class="coupon-desc">Hesap benden, kahkahalar ve mutluluk senden bacım!</p>
+              <div class="coupon-stamp" aria-hidden="true">KULLANILDI ✨</div>
+              <div class="coupon-tap-hint">Dokun ve Bozdur 👆</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gizli Mektup İpucu -->
+        <div class="secret-hint-box">
+          <p>💡 <small>İpucu: Maskotumuza 5 kere dokunursan kalpten bir mektup açılır... 💌</small></p>
+        </div>
+
+        <!-- Başa Dön Butonu -->
+        <button class="fairy-btn restart-journey-btn" id="restart-journey-btn">
+          <span>En Başa Dön 🌸</span>
+        </button>
+
       </div>
     </section>
 

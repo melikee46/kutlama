@@ -1,9 +1,10 @@
 /* ===================================================
    PERİ BAHÇESİ KUTLAMA TEMASI - MOBİL ÖNCELİKLİ STİL
+   4 EKRANLI MASAL KİTABI & SPA SİSTEMİ
    =================================================== */
 
 :root {
-  /* İstenen Renk Paleti */
+  /* Renk Paleti */
   --pastel-pink-soft: #FFD6E8;
   --pastel-pink-deep: #FFB3D1;
   --peach-soft: #FFE5D9;
@@ -11,28 +12,29 @@
   --lavender-soft: #EAE3FF;
   --lavender-deep: #C9B8FF;
   --cream-white: #FFFDF9;
-  --cream-card: rgba(255, 253, 249, 0.88);
+  --cream-card: rgba(255, 253, 249, 0.92);
+  --parchment-bg: #FFFDF5;
   
   /* Destekleyici Tonlar */
   --text-primary: #4A3E4D;
   --text-secondary: #7B6B80;
   --accent-gold: #FFD166;
-  --accent-shadow: rgba(255, 179, 209, 0.35);
+  --accent-shadow: rgba(255, 179, 209, 0.38);
   --fairy-glow: rgba(201, 184, 255, 0.45);
 
-  /* Yazı Tipleri - 100% Türkçe (ş, ı, ğ, İ, ç, ö, ü) Karakter Uyumlu */
+  /* 100% Türkçe Uyumlu Fontlar */
   --font-heading: 'Baloo 2', 'Comfortaa', 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-accent: 'Caveat', 'Comfortaa', cursive, sans-serif;
+  --font-hand: 'Caveat', 'Comfortaa', cursive, sans-serif;
 
-  /* Yumuşak Yuvarlak Hatlar */
+  /* Yuvarlak Hatlar */
   --radius-sm: 14px;
   --radius-md: 22px;
   --radius-lg: 32px;
   --radius-pill: 9999px;
 
   /* Geçişler */
-  --transition-smooth: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-smooth: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* Sıfırlama & Temel Ayarlar */
@@ -54,7 +56,7 @@ body {
   line-height: 1.6;
 }
 
-/* Peri Parıltıları & Arka Plan Atmosferi */
+/* Peri Parıltıları & Arka Plan */
 .sparkles-container {
   position: fixed;
   inset: 0;
@@ -79,70 +81,213 @@ body {
   100% { transform: scale(1.05) translateY(-10px); opacity: 1; }
 }
 
-/* Sayfa Kapsayıcısı - Mobil Odaklı */
+/* ===================================================
+   ÜST BAR: GERİ BUTONU + 4 ÇİÇEK STEPPER + MÜZİK
+   =================================================== */
+
+.top-nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 253, 249, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1.5px solid rgba(255, 214, 232, 0.6);
+  box-shadow: 0 4px 16px rgba(255, 179, 209, 0.15);
+}
+
+.nav-back-btn {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1.5px solid #FFC2DD;
+  color: #7E3867;
+  font-family: var(--font-heading);
+  font-size: 0.84rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(255, 179, 209, 0.3);
+  transition: var(--transition-smooth);
+}
+
+.nav-back-btn:active {
+  transform: scale(0.92);
+}
+
+/* 4 Aşamalı Çiçek Göstergesi */
+.stepper-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.step-flower-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.15rem;
+  cursor: pointer;
+  opacity: 0.35;
+  filter: grayscale(80%);
+  transition: all 0.3s ease;
+  padding: 2px;
+}
+
+.step-flower-btn.active {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: scale(1.35);
+  filter: drop-shadow(0 2px 8px rgba(255, 148, 185, 0.8));
+  animation: pulseFlower 2s infinite ease-in-out;
+}
+
+@keyframes pulseFlower {
+  0%, 100% { transform: scale(1.3); }
+  50% { transform: scale(1.45); }
+}
+
+.step-line {
+  width: 10px;
+  height: 2px;
+  background: #FFC2DD;
+  border-radius: 2px;
+}
+
+/* Sağ Üst Müzik Kontrolcüsü */
+.music-controller {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.music-toggle-btn {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFFDF9 0%, #FFEBF3 50%, #ECE4FF 100%);
+  border: 1.5px solid #FFB3D1;
+  box-shadow: 0 3px 10px rgba(255, 179, 209, 0.4);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: transform 0.25s ease;
+}
+
+.music-toggle-btn.is-playing {
+  background: linear-gradient(135deg, #FFB3D1 0%, #FFD166 50%, #C9B8FF 100%);
+  border-color: #FFFFFF;
+  box-shadow: 0 0 14px rgba(255, 179, 209, 0.7);
+  animation: musicPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+.music-note-anim {
+  position: absolute;
+  top: -6px;
+  right: -4px;
+  font-size: 0.75rem;
+  display: none;
+}
+
+.music-toggle-btn.is-playing .music-note-anim {
+  display: block;
+  animation: floatNote 2s ease-in-out infinite;
+}
+
+@keyframes floatNote {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+  50% { transform: translateY(-7px) rotate(15deg); opacity: 1; }
+  100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+}
+
+.music-yt-link {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 179, 209, 0.6);
+  color: #C02942;
+  font-size: 0.7rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.youtube-player-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0.01;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* ===================================================
+   SAYFA KAPSAYICISI & 4 EKRANLI SPA MİMARİSİ
+   =================================================== */
+
 .page-container {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 460px; /* Telefonda optimum kart genişliği */
+  max-width: 460px;
   margin: 0 auto;
-  padding: 24px 18px 40px;
+  padding: 16px 16px 36px;
+  min-height: calc(100vh - 65px);
   display: flex;
   flex-direction: column;
-  gap: 28px;
 }
 
-/* Bölümler */
-.fairy-section {
+.fairy-screen {
+  display: none;
   width: 100%;
 }
 
-.section-header {
-  text-align: center;
-  margin-bottom: 14px;
+.fairy-screen.active {
+  display: flex;
+  flex-direction: column;
+  animation: screenEnter 0.5s cubic-bezier(0.25, 1, 0.5, 1) both;
 }
 
-.section-tag {
-  display: inline-block;
-  font-family: var(--font-heading);
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #7A5784;
-  background: linear-gradient(135deg, rgba(255, 214, 232, 0.7), rgba(201, 184, 255, 0.6));
-  padding: 4px 14px;
-  border-radius: var(--radius-pill);
-  margin-bottom: 8px;
-  box-shadow: 0 2px 8px rgba(201, 184, 255, 0.25);
+@keyframes screenEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-.section-title {
-  font-family: var(--font-heading);
-  font-size: 1.6rem;
-  color: #3F2D44;
-  margin-bottom: 4px;
-  letter-spacing: -0.3px;
-}
-
-.section-desc {
-  font-size: 0.92rem;
-  color: var(--text-secondary);
-  padding: 0 10px;
-}
-
-/* Masalsı Cam & Yumuşak Kartlar */
+/* Cam Efektli Kartlar */
 .glass-card {
   background: var(--cream-card);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-radius: var(--radius-lg);
-  border: 2px solid rgba(255, 255, 255, 0.85);
-  box-shadow: 0 12px 32px var(--accent-shadow),
-              0 4px 16px var(--fairy-glow),
-              inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  padding: 24px 20px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 14px 34px var(--accent-shadow),
+              0 4px 18px var(--fairy-glow),
+              inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  padding: 24px 18px;
   position: relative;
   overflow: hidden;
-  transition: var(--transition-smooth);
 }
 
 .glass-card::before {
@@ -153,57 +298,55 @@ body {
   right: 0;
   height: 6px;
   background: linear-gradient(90deg, var(--pastel-pink-soft), var(--peach-soft), var(--lavender-deep));
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
-/* Hero Bölümü Özelleştirmeleri */
-.hero-card {
-  text-align: center;
-  padding: 30px 18px 34px;
-}
-
-.badge-pill {
+/* Aşama Başlık Rozeti */
+.stage-tag-pill {
   display: inline-block;
   font-family: var(--font-heading);
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: #633B58;
-  background: linear-gradient(135deg, #FFE8F2, #FFF2EB);
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #6A3860;
+  background: linear-gradient(135deg, #FFE8F2 0%, #FFF2EB 50%, #ECE4FF 100%);
   border: 1.5px solid #FFD6E8;
-  padding: 6px 16px;
+  padding: 5px 16px;
   border-radius: var(--radius-pill);
   margin-bottom: 14px;
-  box-shadow: 0 4px 12px rgba(255, 179, 209, 0.3);
-  animation: floatBadge 3.5s ease-in-out infinite alternate;
+  box-shadow: 0 3px 10px rgba(255, 179, 209, 0.3);
+  text-align: center;
+  align-self: center;
 }
 
-@keyframes floatBadge {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-4px); }
+/* ===================================================
+         EKRAN 1: KARŞILAMA BÖLÜMÜ
+   =================================================== */
+
+.hero-card {
+  text-align: center;
+  padding: 26px 18px 30px;
 }
 
-/* Harf Harf Zıplayan Başlık */
 .hero-title {
   font-family: var(--font-heading);
-  font-size: 1.78rem;
-  font-weight: 700;
+  font-size: 1.82rem;
+  font-weight: 800;
   line-height: 1.25;
   color: #3C253E;
-  margin-bottom: 8px;
-  word-break: break-word;
+  margin-bottom: 6px;
 }
 
 .bounce-title {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.18em 0;
+  gap: 0.16em 0;
 }
 
 .title-word {
   display: inline-flex;
   white-space: nowrap;
-  margin: 0 0.18em;
+  margin: 0 0.16em;
 }
 
 .bounce-char {
@@ -212,13 +355,12 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: letterDropBounce 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-  will-change: transform, opacity;
 }
 
 @keyframes letterDropBounce {
   0% {
     opacity: 0;
-    transform: translateY(-28px) scale(0.4) rotate(-6deg);
+    transform: translateY(-26px) scale(0.4) rotate(-6deg);
   }
   60% {
     opacity: 1;
@@ -236,26 +378,23 @@ body {
 .hero-subtitle {
   font-family: var(--font-heading);
   font-size: 1.05rem;
-  font-weight: 600;
+  font-weight: 700;
   color: #7A537A;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
   background: linear-gradient(135deg, rgba(255, 214, 232, 0.4), rgba(201, 184, 255, 0.4));
   display: inline-block;
-  padding: 4px 16px;
+  padding: 4px 18px;
   border-radius: var(--radius-pill);
 }
 
-/* Karakter Alanı & Sihirli Ayna */
 .character-slot {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 12px 0 28px;
-  padding: 10px 0;
+  margin: 10px 0 24px;
 }
 
-/* Karakterin Çevresinde Süzülen Çiçekler & Yıldızlar */
 .orbiting-elements {
   position: absolute;
   inset: -15px -10px;
@@ -267,79 +406,41 @@ body {
   position: absolute;
   font-size: 1.5rem;
   filter: drop-shadow(0 4px 8px rgba(255, 179, 209, 0.5));
-  will-change: transform;
 }
 
-.item-1 { /* Lavanta */
-  top: 5%;
-  left: 12%;
-  font-size: 1.8rem;
-  animation: driftFlora1 5.5s ease-in-out infinite alternate;
-}
-
-.item-2 { /* Pembe Çiçek */
-  top: 12%;
-  right: 12%;
-  font-size: 1.9rem;
-  animation: driftFlora2 6s ease-in-out infinite alternate;
-}
-
-.item-3 { /* Yıldız */
-  bottom: 25%;
-  left: 6%;
-  font-size: 1.4rem;
-  animation: driftFlora3 4.5s ease-in-out infinite alternate;
-}
-
-.item-4 { /* Lale/Çiçek */
-  bottom: 18%;
-  right: 8%;
-  font-size: 1.6rem;
-  animation: driftFlora1 5s ease-in-out infinite alternate 1s;
-}
-
-.item-5 { /* Parıltı */
-  top: 50%;
-  right: 4%;
-  font-size: 1.3rem;
-  animation: driftFlora2 4s ease-in-out infinite alternate 0.5s;
-}
-
-.item-6 { /* Kalp */
-  top: 45%;
-  left: 4%;
-  font-size: 1.4rem;
-  animation: driftFlora3 5s ease-in-out infinite alternate 1.5s;
-}
+.item-1 { top: 5%; left: 12%; font-size: 1.8rem; animation: driftFlora1 5.5s infinite alternate; }
+.item-2 { top: 12%; right: 12%; font-size: 1.9rem; pointer-events: auto; }
+.item-3 { bottom: 25%; left: 6%; font-size: 1.4rem; animation: driftFlora3 4.5s infinite alternate; }
+.item-4 { bottom: 18%; right: 8%; font-size: 1.6rem; animation: driftFlora1 5s infinite alternate 1s; }
+.item-5 { top: 50%; right: 4%; font-size: 1.3rem; animation: driftFlora2 4s infinite alternate 0.5s; }
+.item-6 { top: 45%; left: 4%; font-size: 1.4rem; animation: driftFlora3 5s infinite alternate 1.5s; }
 
 @keyframes driftFlora1 {
-  0% { transform: translate(0, 0) rotate(0deg) scale(0.95); }
-  50% { transform: translate(8px, -12px) rotate(12deg) scale(1.1); }
-  100% { transform: translate(-6px, 10px) rotate(-8deg) scale(1); }
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(8px, -12px) rotate(12deg); }
+  100% { transform: translate(-6px, 10px) rotate(-8deg); }
 }
 
 @keyframes driftFlora2 {
-  0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-  50% { transform: translate(-10px, -14px) rotate(-14deg) scale(1.12); }
-  100% { transform: translate(8px, 8px) rotate(10deg) scale(0.96); }
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-10px, -14px) rotate(-14deg); }
+  100% { transform: translate(8px, 8px) rotate(10deg); }
 }
 
 @keyframes driftFlora3 {
-  0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-  50% { transform: translate(10px, 12px) rotate(15deg) scale(1.15); }
-  100% { transform: translate(-8px, -10px) rotate(-10deg) scale(0.9); }
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(10px, 12px) rotate(15deg); }
+  100% { transform: translate(-8px, -10px) rotate(-10deg); }
 }
 
-/* Sihirli Peri Aynası Çerçevesi */
 .magic-mirror-frame {
   position: relative;
-  width: 220px;
-  height: 270px;
+  width: 210px;
+  height: 255px;
   border-radius: 50% 50% 48% 48% / 54% 54% 46% 46%;
   background: linear-gradient(145deg, #FFFDF9 0%, #FFF2F7 50%, #EFE8FF 100%);
   padding: 10px;
   box-shadow: 0 16px 36px rgba(255, 179, 209, 0.45),
-              0 6px 18px rgba(201, 184, 255, 0.4),
               0 0 0 5px #FFFFFF,
               0 0 0 10px rgba(255, 214, 232, 0.8),
               0 0 0 14px rgba(201, 184, 255, 0.5);
@@ -349,6 +450,7 @@ body {
   justify-content: center;
   animation: floatMirror 4.5s ease-in-out infinite alternate;
   z-index: 2;
+  cursor: pointer;
 }
 
 @keyframes floatMirror {
@@ -363,12 +465,10 @@ body {
   border-radius: 50% 50% 46% 46% / 52% 52% 44% 44%;
   overflow: hidden;
   background: radial-gradient(circle at center, #FFFDF9 30%, #FFEBF3 70%, #F0E8FF 100%);
-  box-shadow: inset 0 6px 16px rgba(119, 75, 122, 0.12),
-              inset 0 -6px 16px rgba(255, 255, 255, 0.8);
+  box-shadow: inset 0 6px 16px rgba(119, 75, 122, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
 }
 
 .character-img {
@@ -377,11 +477,6 @@ body {
   object-fit: cover;
   object-position: center 25%;
   transform: scale(1.08);
-  transition: transform 0.4s ease;
-}
-
-.magic-mirror-frame:hover .character-img {
-  transform: scale(1.14);
 }
 
 .mirror-sparkle-tag {
@@ -400,426 +495,351 @@ body {
   z-index: 5;
 }
 
-/* Nabız Gibi Atan Pembe Buton */
-.pulse-btn {
-  font-size: 1.15rem;
-  font-weight: 700;
-  letter-spacing: 0.3px;
-  padding: 16px 28px;
-  background: linear-gradient(135deg, #FF8DB3 0%, #FFA8C5 50%, #B89EFF 100%);
-  background-size: 200% 200%;
-  color: #2F172E;
-  box-shadow: 0 10px 26px rgba(255, 141, 179, 0.45),
-              0 3px 0 #E07196;
-  animation: heartPulse 2.4s ease-in-out infinite, gradientShift 5s ease infinite;
+.secret-flower-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.25s ease;
 }
 
-@keyframes heartPulse {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 10px 24px rgba(255, 141, 179, 0.45), 0 0 0 0 rgba(255, 179, 209, 0.5);
-  }
-  50% {
-    transform: scale(1.045);
-    box-shadow: 0 14px 34px rgba(255, 141, 179, 0.65), 0 0 0 10px rgba(255, 179, 209, 0);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 10px 24px rgba(255, 141, 179, 0.45), 0 0 0 0 rgba(255, 179, 209, 0);
-  }
+.secret-flower-btn:hover {
+  transform: scale(1.3) rotate(15deg);
 }
 
-.pulse-btn:active {
-  transform: translateY(2px) scale(0.97) !important;
-  box-shadow: 0 4px 12px rgba(255, 141, 179, 0.4);
+.egg-hint {
+  font-size: 0.7rem;
+  opacity: 0.85;
 }
 
-/* Fare ve Dokunmatik İzi (Sparkle Trail) */
-.touch-sparkle {
-  position: fixed;
-  pointer-events: none;
-  z-index: 99999;
-  font-size: 1.2rem;
-  transform: translate(-50%, -50%);
-  animation: sparkleFadeOut 0.85s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-  will-change: transform, opacity;
-  user-select: none;
-}
-
-@keyframes sparkleFadeOut {
-  0% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(0.6) rotate(0deg);
-  }
-  50% {
-    opacity: 0.9;
-    transform: translate(calc(-50% + var(--drift-x, 0px)), calc(-50% - 15px)) scale(1.2) rotate(45deg);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(calc(-50% + var(--drift-x, 0px)), calc(-50% - 30px)) scale(0.3) rotate(90deg);
-  }
-}
-
-/* Peri Butonu */
+/* Peri Butonları */
 .fairy-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 14px 24px;
+  padding: 15px 26px;
   background: linear-gradient(135deg, var(--pastel-pink-deep) 0%, #FFAAA6 50%, var(--lavender-deep) 100%);
   background-size: 200% 200%;
   color: #381B34;
   font-family: var(--font-heading);
-  font-size: 1.05rem;
-  font-weight: 600;
+  font-size: 1.1rem;
+  font-weight: 700;
   border: none;
   border-radius: var(--radius-pill);
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(255, 179, 209, 0.45),
+  box-shadow: 0 10px 24px rgba(255, 179, 209, 0.45),
               0 3px 0 #E28FA8;
   transition: var(--transition-smooth);
-  animation: gradientShift 6s ease infinite;
 }
 
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.pulse-btn {
+  background: linear-gradient(135deg, #FF8DB3 0%, #FFA8C5 50%, #B89EFF 100%);
+  animation: heartPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes heartPulse {
+  0% { transform: scale(1); box-shadow: 0 10px 24px rgba(255, 141, 179, 0.45); }
+  50% { transform: scale(1.04); box-shadow: 0 14px 34px rgba(255, 141, 179, 0.65); }
+  100% { transform: scale(1); box-shadow: 0 10px 24px rgba(255, 141, 179, 0.45); }
 }
 
 .fairy-btn:active {
-  transform: translateY(3px) scale(0.98);
-  box-shadow: 0 3px 10px rgba(255, 179, 209, 0.4);
+  transform: translateY(2px) scale(0.97);
 }
 
 /* ===================================================
-   BİZİM HİKÂYEMİZ - PASTEL WHATSAPP SOHBET BÖLÜMÜ
+   EKRAN 2: BİZİM HİKÂYEMİZ (MASAL KİTABI)
    =================================================== */
 
-.story-card {
-  padding: 0;
-  overflow: hidden;
-  background: rgba(255, 254, 252, 0.94);
-  border: 2px solid rgba(255, 214, 232, 0.9);
-}
-
-.chat-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 18px;
-  background: linear-gradient(135deg, #FFE5F0 0%, #FFF2F7 50%, #ECE4FF 100%);
-  border-bottom: 1.5px solid rgba(255, 214, 232, 0.7);
-}
-
-.chat-user-info {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.chat-avatar {
-  position: relative;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #FFD6E8, #C9B8FF);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 10px rgba(201, 184, 255, 0.4);
-}
-
-.avatar-emoji {
-  font-size: 1.5rem;
-}
-
-.status-dot {
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-  width: 12px;
-  height: 12px;
-  background-color: #55E09C;
-  border: 2px solid #FFFDF9;
-  border-radius: 50%;
-  box-shadow: 0 0 6px rgba(85, 224, 156, 0.7);
-}
-
-.chat-user-text {
-  display: flex;
-  flex-direction: column;
-}
-
-.chat-name {
-  font-family: var(--font-heading);
-  font-size: 0.98rem;
-  font-weight: 700;
-  color: #482B48;
-}
-
-.chat-status {
-  font-size: 0.76rem;
-  color: #8C6F8E;
-  font-weight: 600;
-}
-
-.replay-chat-btn {
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(255, 179, 209, 0.6);
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.05rem;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(255, 179, 209, 0.3);
-  transition: transform 0.25s ease;
-}
-
-.replay-chat-btn:active {
-  transform: rotate(180deg) scale(0.92);
-}
-
-/* Sohbet Akışı & Arka Plan */
-.chat-messages-container {
-  padding: 18px 16px 24px;
-  min-height: 340px;
-  background: radial-gradient(#FFD6E8 1.2px, transparent 1.2px), 
-              radial-gradient(#C9B8FF 1.2px, #FFFDF9 1.2px);
-  background-size: 28px 28px;
-  background-position: 0 0, 14px 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.chat-date-pill {
+.storybook-screen-card {
+  padding: 20px 14px 24px;
   text-align: center;
-  margin-bottom: 4px;
 }
 
-.chat-date-pill span {
-  display: inline-block;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(255, 179, 209, 0.5);
-  font-family: var(--font-heading);
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #7A5378;
-  padding: 4px 14px;
-  border-radius: var(--radius-pill);
-  box-shadow: 0 2px 6px rgba(255, 179, 209, 0.2);
-}
-
-.chat-bubble-stream {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 100%;
-}
-
-/* Mesaj Satırı */
-.chat-row {
-  display: flex;
-  align-items: flex-end;
-  gap: 8px;
-  width: 100%;
-  animation: bubblePop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-}
-
-@keyframes bubblePop {
-  0% {
-    opacity: 0;
-    transform: translateY(14px) scale(0.9);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.row-left {
-  justify-content: flex-start;
-}
-
-.row-right {
-  justify-content: flex-end;
-}
-
-/* Sohbet Balonu Genel */
-.chat-bubble {
+.storybook-wrapper {
   position: relative;
-  max-width: 82%;
-  padding: 12px 16px 8px;
-  font-size: 0.94rem;
-  line-height: 1.45;
-  box-shadow: 0 6px 18px rgba(119, 75, 122, 0.08);
-}
-
-.bubble-sender-name {
-  display: block;
-  font-family: var(--font-heading);
-  font-size: 0.75rem;
-  font-weight: 700;
-  margin-bottom: 3px;
-}
-
-.bubble-text {
-  font-weight: 600;
-  color: #38243A;
-  word-break: break-word;
-}
-
-/* Özel Vurgulu Metin (HAYIRLI OLSUN İKKAN) */
-.highlight-shout {
-  font-family: var(--font-heading);
-  font-size: 1.15rem;
-  font-weight: 700;
-  display: block;
-  letter-spacing: 0.4px;
-  color: #B52267;
-  text-shadow: 0 1px 3px rgba(255, 179, 209, 0.6);
-  margin-bottom: 2px;
-}
-
-.bubble-meta {
+  width: 100%;
+  margin: 10px 0 16px;
+  min-height: 480px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 4px;
-  margin-top: 4px;
-  font-size: 0.7rem;
-  color: #927596;
+  justify-content: center;
 }
 
-.checkmarks {
-  color: #FF5A92;
-  font-weight: bold;
-}
-
-/* Balon 1: Pembe (Dost) */
-.bubble-pink {
-  background: linear-gradient(135deg, #FFF0F6 0%, #FFD6E8 100%);
-  border: 1.5px solid #FFC2DD;
-  border-radius: 20px 20px 20px 5px;
-}
-
-.bubble-pink .bubble-sender-name {
-  color: #BA3371;
-}
-
-/* Balon 2: Lavanta (İkkan) */
-.bubble-lavender {
-  background: linear-gradient(135deg, #F6F1FF 0%, #E6DCFF 100%);
-  border: 1.5px solid #D5C5FF;
-  border-radius: 20px 20px 5px 20px;
-}
-
-.bubble-lavender .bubble-sender-name {
-  color: #6C42B3;
-}
-
-/* Balon Köşelerindeki Minik Çiçek & Kalp Süsleri */
-.bubble-ornament {
+/* Kitap Yön Butonları */
+.book-nav-arrow {
   position: absolute;
-  font-size: 0.95rem;
-  pointer-events: none;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12));
-}
-
-.ornament-top-left {
-  top: -8px;
-  left: -6px;
-  animation: floatOrnament 3s ease-in-out infinite alternate;
-}
-
-.ornament-top-right {
-  top: -8px;
-  right: -6px;
-  animation: floatOrnament 3.4s ease-in-out infinite alternate 0.5s;
-}
-
-@keyframes floatOrnament {
-  0% { transform: translateY(0) rotate(0deg); }
-  100% { transform: translateY(-3px) rotate(10deg); }
-}
-
-/* Emoji Sticker Animasyonu */
-.bubble-sticker {
-  font-size: 1.9rem;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12));
-  animation: stickerWiggle 3s ease-in-out infinite;
-  display: inline-block;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1.5px solid #FFC2DD;
+  color: #7E3867;
+  font-size: 1.6rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 179, 209, 0.4);
+  transition: transform 0.2s, background 0.2s;
   user-select: none;
 }
 
-@keyframes stickerWiggle {
-  0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
-  25% { transform: translateY(-5px) rotate(-8deg) scale(1.12); }
-  75% { transform: translateY(-3px) rotate(8deg) scale(1.08); }
+.arrow-prev { left: -6px; }
+.arrow-next { right: -6px; }
+
+.book-nav-arrow:hover {
+  background: #FFF0F6;
+  transform: translateY(-50%) scale(1.1);
 }
 
-/* Canlı 'Yazıyor...' Üç Nokta Animasyonu */
-.typing-indicator-wrapper {
+.book-nav-arrow:active {
+  transform: translateY(-50%) scale(0.92);
+}
+
+/* Masal Kitabı Ana Gövdesi */
+.fairy-storybook {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  height: 470px;
+  border-radius: 26px;
+  box-shadow: 0 18px 45px rgba(255, 148, 185, 0.35),
+              0 6px 18px rgba(201, 184, 255, 0.3),
+              inset 0 0 0 2px rgba(255, 255, 255, 0.85);
+  perspective: 1000px;
+  overflow: hidden;
+}
+
+/* Sayfa Şablonu */
+.book-page {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, #FFFDF8 0%, #FFF7FA 50%, #FAF5FF 100%);
+  border: 4px solid #FFD6E8;
+  border-radius: 26px;
+  padding: 24px 20px 18px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  opacity: 0;
+  transform: rotateY(15deg) scale(0.96);
+  transition: opacity 0.4s ease, transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: inset 0 0 25px rgba(255, 214, 232, 0.35);
+}
+
+.book-page.active {
   display: flex;
-  margin-top: 4px;
+  opacity: 1;
+  transform: rotateY(0deg) scale(1);
+  z-index: 5;
 }
 
-.typing-bubble {
-  background: rgba(255, 255, 255, 0.92);
-  border: 1.5px solid #FFD6E8;
-  padding: 8px 14px;
-  border-radius: var(--radius-pill);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 4px 12px rgba(255, 179, 209, 0.35);
-  animation: bubblePop 0.3s ease-out;
+/* Sayfa Köşesi Süsleri */
+.page-corner {
+  position: absolute;
+  font-size: 1.25rem;
+  animation: cornerPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
-.typing-name {
+.corner-tl { top: 12px; left: 14px; }
+.corner-tr { top: 12px; right: 14px; }
+
+@keyframes cornerPop {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Kapak Sayfası Özel Stili */
+.book-cover {
+  background: linear-gradient(135deg, #FFD6E8 0%, #FFBBD5 45%, #E4D8FF 100%);
+  border: 5px solid #FFFFFF;
+  text-align: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px 18px;
+}
+
+.cover-badge {
+  display: inline-block;
+  align-self: center;
   font-family: var(--font-heading);
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: #8C5F8E;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #7E3260;
+  background: #FFFDF9;
+  border: 1.5px solid #FF94B9;
+  padding: 4px 14px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 3px 8px rgba(255, 148, 185, 0.3);
 }
 
-.typing-dots {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
+.cover-title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #4A1E42;
+  line-height: 1.3;
+  margin: 4px 0;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 
-.typing-dots .dot {
-  width: 6px;
-  height: 6px;
-  background: linear-gradient(135deg, #FF94B9, #B89EFF);
+.cover-char-slot {
+  display: flex;
+  justify-content: center;
+  margin: 6px 0;
+}
+
+.cover-char-halo {
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  animation: dotBounce 1.3s infinite ease-in-out;
+  background: #FFFDF9;
+  border: 3px solid #FFFDF9;
+  box-shadow: 0 8px 20px rgba(255, 148, 185, 0.4),
+              0 0 0 5px rgba(255, 214, 232, 0.8);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: floatBadge 3.5s ease-in-out infinite alternate;
 }
 
-.typing-dots .dot:nth-child(1) { animation-delay: 0s; }
-.typing-dots .dot:nth-child(2) { animation-delay: 0.2s; }
-.typing-dots .dot:nth-child(3) { animation-delay: 0.4s; }
+.cover-char-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  transform: scale(1.15);
+}
 
-@keyframes dotBounce {
-  0%, 60%, 100% {
-    transform: translateY(0);
-    opacity: 0.4;
-  }
-  30% {
-    transform: translateY(-6px);
-    opacity: 1;
-  }
+.cover-hint-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.cover-hint-text {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #6C2B59;
+}
+
+.open-book-btn {
+  padding: 10px 22px;
+  font-size: 0.98rem;
+  background: #FFFDF9;
+  border: 2px solid #FF94B9;
+  color: #7A2859;
+  box-shadow: 0 6px 16px rgba(255, 148, 185, 0.35);
+}
+
+.cover-ribbon {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #6E3B68;
+}
+
+/* Hikaye Sayfaları (1-7) */
+.page-header-box {
+  margin-top: 14px;
+}
+
+.page-chapter-title {
+  font-family: var(--font-hand);
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #B52267;
+  text-shadow: 0 1px 3px rgba(255, 179, 209, 0.4);
+}
+
+.parchment-note-box {
+  position: relative;
+  background: var(--parchment-bg);
+  border: 2px dashed #FFB8D3;
+  border-radius: var(--radius-md);
+  padding: 24px 18px 20px;
+  margin: 14px 0;
+  box-shadow: 0 8px 22px rgba(119, 75, 122, 0.08),
+              inset 0 0 15px rgba(255, 229, 217, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 170px;
+}
+
+.parchment-pin {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.3rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+}
+
+.story-quote {
+  font-family: var(--font-hand);
+  font-size: 1.62rem;
+  font-weight: 700;
+  color: #381A36;
+  line-height: 1.45;
+  letter-spacing: 0.2px;
+}
+
+.page-footer-meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #8C5F8A;
+  padding-top: 6px;
+}
+
+/* Son Sayfa (Sayfa 8) */
+.book-final-page {
+  background: linear-gradient(145deg, #FFF7FB 0%, #FFF0F6 60%, #ECE4FF 100%);
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.final-book-char-slot {
+  display: flex;
+  justify-content: center;
+}
+
+.final-book-shout {
+  font-family: var(--font-hand);
+  font-size: 2rem;
+  font-weight: 700;
+  color: #9C1955;
+  line-height: 1.35;
+  padding: 0 10px;
+}
+
+.final-book-action {
+  margin-top: 8px;
+}
+
+.book-swipe-tip {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #8C6A8F;
+  margin-top: 8px;
 }
 
 /* ===================================================
-   BACIM BÜTÜN ZORLUKLARI AŞTI - KIVRIMLI PERİ PATİKASI
+   EKRAN 3: BACIM BÜTÜN ZORLUKLARI AŞTI
    =================================================== */
 
 .diva-quote-pill {
@@ -839,7 +859,6 @@ body {
   font-size: 0.88rem;
   font-weight: 700;
   color: #7A2859;
-  letter-spacing: 0.2px;
 }
 
 @keyframes gentleWiggle {
@@ -852,15 +871,15 @@ body {
   color: #8C6A8F;
   font-weight: 600;
   margin-top: 4px;
+  text-align: center;
 }
 
 .journey-path-card {
   position: relative;
-  padding: 28px 16px 20px;
+  padding: 24px 16px 20px;
   overflow: hidden;
 }
 
-/* Çiçekli Kıvrımlı Patika Çizgisi */
 .curvy-flower-path {
   position: absolute;
   top: 40px;
@@ -914,21 +933,19 @@ body {
   100% { transform: translateY(-8px) rotate(12deg); }
 }
 
-/* Rozet Listesi & Duraklar */
 .milestones-list {
   position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 22px;
-  margin-bottom: 30px;
+  gap: 20px;
+  margin: 16px 0 26px;
 }
 
-/* Rozet Elemanı */
 .milestone-item {
   width: 100%;
   opacity: 0;
-  transform: scale(0.85) translateY(24px);
+  transform: scale(0.85) translateY(20px);
   transition: opacity 0.45s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -937,26 +954,23 @@ body {
   transform: scale(1) translateY(0);
 }
 
-/* Rozet Butonu (Tıklanabilir) */
 .milestone-badge-btn {
   display: flex;
   align-items: center;
   gap: 14px;
   background: linear-gradient(135deg, #FFFDF9 0%, #FFF4F8 60%, #F5EFFF 100%);
   border: 2px solid rgba(255, 214, 232, 0.9);
-  padding: 14px 16px;
+  padding: 13px 16px;
   border-radius: var(--radius-md);
-  box-shadow: 0 6px 18px rgba(201, 184, 255, 0.25),
-              0 2px 6px rgba(255, 179, 209, 0.2);
+  box-shadow: 0 6px 18px rgba(201, 184, 255, 0.25);
   cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   user-select: none;
 }
 
 .milestone-badge-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 24px rgba(255, 179, 209, 0.35);
-  border-color: #FFB3D1;
 }
 
 .milestone-badge-btn:active {
@@ -965,8 +979,8 @@ body {
 
 .badge-icon-wrapper {
   position: relative;
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   flex-shrink: 0;
   border-radius: 50%;
   background: linear-gradient(135deg, #FFE8F2 0%, #E9DEFF 100%);
@@ -974,24 +988,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 10px rgba(255, 179, 209, 0.3);
 }
 
 .badge-icon {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
 }
 
 .badge-sparkle {
   position: absolute;
   top: -4px;
   right: -4px;
-  font-size: 0.9rem;
-  animation: pulseSparkle 2s infinite ease-in-out;
-}
-
-@keyframes pulseSparkle {
-  0%, 100% { transform: scale(0.9); opacity: 0.7; }
-  50% { transform: scale(1.2); opacity: 1; }
+  font-size: 0.85rem;
 }
 
 .badge-content {
@@ -1000,17 +1007,15 @@ body {
 
 .badge-step-tag {
   display: block;
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   font-weight: 700;
   color: #9A5A8E;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 2px;
 }
 
 .badge-title {
   font-family: var(--font-heading);
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   font-weight: 700;
   color: #3F2341;
   line-height: 1.3;
@@ -1027,21 +1032,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.35s ease, background 0.3s ease;
+  transition: transform 0.35s ease;
 }
 
 .milestone-item.is-open .expand-indicator {
   transform: rotate(45deg);
   background: rgba(255, 148, 185, 0.3);
-  color: #8C255F;
 }
 
-/* Samimi Gizli Not */
 .milestone-note {
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease, margin-top 0.35s ease;
+  transition: max-height 0.4s ease, opacity 0.35s ease, margin-top 0.35s ease;
   margin-top: 0;
 }
 
@@ -1057,7 +1060,6 @@ body {
   border: 1.5px dashed #FFB8D3;
   border-radius: var(--radius-sm);
   padding: 14px 16px 14px 38px;
-  box-shadow: 0 4px 14px rgba(255, 179, 209, 0.2);
 }
 
 .note-pin {
@@ -1074,14 +1076,12 @@ body {
   font-weight: 600;
 }
 
-/* 4. Rozet: Büyük Şampiyon Rozeti */
+/* Şampiyon Rozeti */
 .item-champion .champion-btn {
   background: linear-gradient(135deg, #FFE8F2 0%, #FFF3DC 50%, #E9DEFF 100%);
   border: 2.5px solid #FF94B9;
-  padding: 18px 18px;
-  box-shadow: 0 12px 28px rgba(255, 148, 185, 0.4),
-              0 0 16px rgba(255, 209, 102, 0.3);
-  animation: championPulse 3s ease-in-out infinite;
+  padding: 16px 16px;
+  animation: championPulse 3s infinite;
 }
 
 @keyframes championPulse {
@@ -1090,38 +1090,30 @@ body {
 }
 
 .champion-icon-wrapper {
-  width: 58px;
-  height: 58px;
+  width: 54px;
+  height: 54px;
   background: linear-gradient(135deg, #FFD166, #FF94B9);
   border: 2px solid #FFFDF9;
 }
 
 .champion-icon {
-  font-size: 2rem;
+  font-size: 1.9rem;
 }
 
 .champion-trophy-tag {
   display: block;
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   font-weight: 800;
   color: #B52267;
-  letter-spacing: 0.8px;
 }
 
 .champion-title {
   font-family: var(--font-heading);
-  font-size: 1.35rem;
+  font-size: 1.3rem;
   font-weight: 800;
   color: #B01E62;
-  text-shadow: 0 1px 2px rgba(255, 179, 209, 0.5);
 }
 
-.champion-note .note-inner {
-  background: linear-gradient(135deg, #FFF8EC 0%, #FFF0F6 100%);
-  border: 2px solid #FFC285;
-}
-
-/* Finiş Çizgisi ve El Sallayan Karakter */
 .finish-line-wrapper {
   position: relative;
   z-index: 2;
@@ -1134,56 +1126,42 @@ body {
   background: linear-gradient(90deg, #FFB3D1, #FFD166, #C9B8FF);
   color: #381A36;
   font-family: var(--font-heading);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 800;
   padding: 6px 18px;
   border-radius: var(--radius-pill);
   box-shadow: 0 4px 14px rgba(255, 179, 209, 0.4);
-  margin-bottom: 16px;
-  letter-spacing: 0.5px;
+  margin-bottom: 14px;
 }
 
 .mini-character-stage {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  cursor: pointer;
 }
 
 .speech-bubble-mini {
   background: #FFFDF9;
   border: 1.5px solid #FFB3D1;
   border-radius: var(--radius-pill);
-  padding: 6px 16px;
+  padding: 5px 14px;
   box-shadow: 0 4px 12px rgba(255, 179, 209, 0.3);
-  position: relative;
-  animation: floatBadge 3s ease-in-out infinite alternate;
-}
-
-.speech-bubble-mini::after {
-  content: '';
-  position: absolute;
-  bottom: -6px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 10px;
-  height: 6px;
-  background: #FFFDF9;
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
 }
 
 .speech-bubble-mini span {
   font-family: var(--font-heading);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: #6C2E60;
 }
 
 .mini-char-halo {
-  width: 90px;
-  height: 90px;
+  width: 86px;
+  height: 86px;
   border-radius: 50%;
-  background: radial-gradient(circle, #FFFFFF 40%, #FFF0F6 70%, #ECE4FF 100%);
+  background: #FFFDF9;
   border: 3px solid #FFFDF9;
   box-shadow: 0 8px 20px rgba(201, 184, 255, 0.45),
               0 0 0 4px rgba(255, 214, 232, 0.8);
@@ -1203,184 +1181,189 @@ body {
 }
 
 @keyframes waveHandChar {
-  0% { transform: rotate(-4deg) translateY(0); }
-  50% { transform: rotate(4deg) translateY(-6px) scale(1.04); }
-  100% { transform: rotate(-4deg) translateY(0); }
+  0% { transform: rotate(-4deg); }
+  50% { transform: rotate(4deg) translateY(-5px); }
+  100% { transform: rotate(-4deg); }
 }
 
-/* Final Bölümü */
+.journey-action-slot {
+  margin-top: 18px;
+}
+
+/* ===================================================
+   EKRAN 4: BÜYÜK FİNAL & TARHANA KUPONLARI
+   =================================================== */
+
 .final-card {
   text-align: center;
-  padding: 30px 20px;
-  background: linear-gradient(180deg, rgba(255, 253, 249, 0.95) 0%, rgba(255, 240, 248, 0.95) 100%);
+  padding: 24px 16px 28px;
 }
 
 .final-sparkle {
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   display: inline-block;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .final-text {
-  font-size: 1rem;
+  font-size: 0.98rem;
   color: var(--text-primary);
-  margin-bottom: 22px;
+  margin-bottom: 20px;
   font-weight: 600;
 }
-
-.celebrate-btn {
-  background: linear-gradient(135deg, #FFB3D1 0%, #FFC6A5 50%, #C9B8FF 100%);
-  font-size: 1.1rem;
-}
-
-/* Altbilgi (Footer) */
-.fairy-footer {
-  text-align: center;
-  padding: 16px;
-  font-size: 0.84rem;
-  color: var(--text-secondary);
-  font-weight: 500;
-}
-
-/* ===================================================
-   SAĞ ÜST MÜZİK KONTROLCÜSÜ (YOUTUBE)
-   =================================================== */
-
-.music-controller {
-  position: fixed;
-  top: 14px;
-  right: 14px;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.music-toggle-btn {
-  position: relative;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #FFFDF9 0%, #FFEBF3 50%, #ECE4FF 100%);
-  border: 2px solid #FFB3D1;
-  box-shadow: 0 4px 14px rgba(255, 179, 209, 0.45);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.music-toggle-btn:hover {
-  transform: scale(1.08);
-}
-
-.music-toggle-btn:active {
-  transform: scale(0.94);
-}
-
-.music-toggle-btn.is-playing {
-  background: linear-gradient(135deg, #FFB3D1 0%, #FFD166 50%, #C9B8FF 100%);
-  border-color: #FFFFFF;
-  box-shadow: 0 0 16px rgba(255, 179, 209, 0.7);
-  animation: musicPulse 1.8s ease-in-out infinite;
-}
-
-@keyframes musicPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.07); }
-}
-
-.music-note-anim {
-  position: absolute;
-  top: -6px;
-  right: -4px;
-  font-size: 0.85rem;
-  display: none;
-}
-
-.music-toggle-btn.is-playing .music-note-anim {
-  display: block;
-  animation: floatNote 2s ease-in-out infinite;
-}
-
-@keyframes floatNote {
-  0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
-  50% { transform: translateY(-8px) rotate(15deg); opacity: 1; }
-  100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
-}
-
-.music-yt-link {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(255, 179, 209, 0.6);
-  color: #C02942;
-  font-size: 0.75rem;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
-}
-
-.music-yt-link:hover {
-  transform: scale(1.1);
-}
-
-.youtube-player-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  opacity: 0.01;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-/* Sihirli Çiçek Gizli Mektup Tetikleyici */
-.secret-flower-btn {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  transition: transform 0.25s ease;
-}
-
-.secret-flower-btn:hover {
-  transform: scale(1.25) rotate(15deg) !important;
-}
-
-.egg-hint {
-  font-size: 0.72rem;
-  opacity: 0.8;
-  font-weight: 500;
-}
-
-/* ===================================================
-   KALBİNİ PATLAT BUTONU & BÜYÜK KUTLAMA OVERLAY'İ
-   =================================================== */
 
 .heart-burst-btn {
   font-size: 1.15rem;
   font-weight: 800;
   padding: 16px 28px;
   background: linear-gradient(135deg, #FF6F9C 0%, #FF94B9 50%, #B288FF 100%);
-  background-size: 200% 200%;
   color: #FFFFFF;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-  box-shadow: 0 12px 30px rgba(255, 111, 156, 0.5),
-              0 0 15px rgba(255, 209, 102, 0.4);
-  animation: heartPulse 2s ease-in-out infinite, gradientShift 4s ease infinite;
+  box-shadow: 0 12px 30px rgba(255, 111, 156, 0.5);
+  animation: heartPulse 2s ease-in-out infinite;
+  margin-bottom: 26px;
 }
+
+/* Tarhana Kuponları */
+.tarhana-coupons-section {
+  margin: 10px 0 20px;
+  text-align: center;
+}
+
+.coupons-main-title {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #4A2247;
+  margin-bottom: 4px;
+}
+
+.coupons-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.coupon-ticket {
+  position: relative;
+  background: linear-gradient(135deg, #FFFDF8 0%, #FFF5FA 100%);
+  border: 2px dashed #FF94B9;
+  border-radius: var(--radius-md);
+  padding: 18px 18px 16px;
+  box-shadow: 0 6px 18px rgba(255, 179, 209, 0.25);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  user-select: none;
+}
+
+.coupon-ticket:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(255, 179, 209, 0.35);
+}
+
+.coupon-decor-cut {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #FFF5F8;
+  border: 2px dashed #FF94B9;
+  z-index: 2;
+}
+
+.top-cut { top: -10px; left: 50%; transform: translateX(-50%); }
+.bottom-cut { bottom: -10px; left: 50%; transform: translateX(-50%); }
+
+.coupon-header-mini {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #B52267;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.coupon-offer {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #381B34;
+  margin-bottom: 4px;
+}
+
+.coupon-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.coupon-tap-hint {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #A34882;
+  margin-top: 8px;
+}
+
+/* Kupon Damgası (KULLANILDI ✨) */
+.coupon-stamp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-12deg) scale(0);
+  opacity: 0;
+  padding: 6px 18px;
+  border: 3.5px solid #E02B65;
+  border-radius: 12px;
+  color: #E02B65;
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-shadow: 0 1px 2px rgba(224, 43, 101, 0.3);
+  box-shadow: 0 0 0 2px rgba(224, 43, 101, 0.4), inset 0 0 0 2px rgba(224, 43, 101, 0.4);
+  pointer-events: none;
+  background: rgba(255, 253, 249, 0.9);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+  z-index: 10;
+}
+
+.coupon-ticket.is-stamped .coupon-stamp {
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(-12deg) scale(1);
+  animation: rubberStamp 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes rubberStamp {
+  0% { transform: translate(-50%, -50%) rotate(-28deg) scale(2.4); opacity: 0; }
+  70% { transform: translate(-50%, -50%) rotate(-8deg) scale(0.92); opacity: 1; }
+  100% { transform: translate(-50%, -50%) rotate(-12deg) scale(1); opacity: 1; }
+}
+
+.secret-hint-box {
+  margin: 16px 0 18px;
+  font-size: 0.82rem;
+  color: #7E4B77;
+  font-weight: 600;
+}
+
+.restart-journey-btn {
+  background: linear-gradient(135deg, #FFE8F2 0%, #FFFDF9 50%, #ECE4FF 100%);
+  border: 2px solid #FFC2DD;
+  color: #6C2B59;
+  font-size: 0.98rem;
+  box-shadow: 0 4px 14px rgba(255, 179, 209, 0.3);
+}
+
+/* ===================================================
+   MODALLAR: BÜYÜK KUTLAMA OVERLAY & GİZLİ MEKTUP
+   =================================================== */
 
 .celebration-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(43, 20, 48, 0.75);
+  background: rgba(43, 20, 48, 0.78);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   z-index: 100000;
@@ -1388,60 +1371,51 @@ body {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  animation: fadeInModal 0.35s ease-out;
 }
 
 .celebration-modal-card {
   background: linear-gradient(135deg, #FFFDF9 0%, #FFF0F6 50%, #F5EEFF 100%);
   border: 3px solid #FF94B9;
   border-radius: var(--radius-lg);
-  padding: 36px 24px 30px;
+  padding: 34px 22px 28px;
   text-align: center;
   max-width: 420px;
   width: 100%;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
               0 0 40px rgba(255, 148, 185, 0.6);
   animation: zoomInPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-  position: relative;
 }
 
 .celebration-particles-burst {
   font-size: 2.2rem;
-  margin-bottom: 12px;
-  animation: floatBadge 2s ease-in-out infinite alternate;
+  margin-bottom: 10px;
 }
 
 .celebration-shout-title {
   font-family: var(--font-heading);
   font-size: 1.85rem;
   font-weight: 800;
-  line-height: 1.25;
   color: #BA1658;
   margin-bottom: 12px;
-  text-shadow: 0 2px 6px rgba(255, 179, 209, 0.6);
-  letter-spacing: -0.3px;
+  line-height: 1.25;
 }
 
 .celebration-shout-desc {
-  font-size: 1.02rem;
+  font-size: 1rem;
   color: #5C325B;
   font-weight: 700;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
 
 .close-celebration-btn {
-  background: linear-gradient(135deg, #FFB3D1, #FFC6A5, #C9B8FF);
   font-size: 1.05rem;
 }
 
-/* ===================================================
-   GİZLİ SÜRPRİZ MEKTUP MODAL
-   =================================================== */
-
+/* Gizli Mektup Modal */
 .secret-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(56, 28, 59, 0.72);
+  background: rgba(56, 28, 59, 0.75);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 100001;
@@ -1449,7 +1423,6 @@ body {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  animation: fadeInModal 0.3s ease-out;
 }
 
 .secret-letter-card {
@@ -1457,11 +1430,10 @@ body {
   background: linear-gradient(145deg, #FFFDF9 0%, #FFF7FA 100%);
   border: 2px dashed #FF94B9;
   border-radius: var(--radius-lg);
-  padding: 34px 22px 26px;
+  padding: 32px 20px 24px;
   max-width: 410px;
   width: 100%;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35),
-              0 0 30px rgba(255, 179, 209, 0.5);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
   animation: zoomInPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
   text-align: center;
 }
@@ -1486,8 +1458,7 @@ body {
 
 .letter-stamp {
   font-size: 2.6rem;
-  margin-bottom: 10px;
-  animation: pulseSparkle 2.5s infinite;
+  margin-bottom: 8px;
 }
 
 .letter-header {
@@ -1495,8 +1466,7 @@ body {
   font-size: 1.25rem;
   font-weight: 700;
   color: #B52267;
-  margin-bottom: 14px;
-  line-height: 1.35;
+  margin-bottom: 12px;
 }
 
 .letter-content {
@@ -1504,11 +1474,10 @@ body {
   border: 1.5px solid rgba(255, 179, 209, 0.4);
   border-radius: var(--radius-sm);
   padding: 16px 14px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .letter-content p {
-  font-family: var(--font-body);
   font-size: 0.96rem;
   line-height: 1.6;
   color: #4A2B47;
@@ -1516,14 +1485,10 @@ body {
 }
 
 .letter-footer {
-  font-family: var(--font-accent);
-  font-size: 1.05rem;
+  font-family: var(--font-hand);
+  font-size: 1.3rem;
   color: #8C4B82;
-}
-
-@keyframes fadeInModal {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  font-weight: 700;
 }
 
 @keyframes zoomInPop {
@@ -1531,24 +1496,39 @@ body {
   to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* Dinamik Kayan Işıltı Animasyonu Elemanı */
+/* İnce Dokunmatik & Fare Parıltı İzi */
+.touch-sparkle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  font-size: 1.2rem;
+  transform: translate(-50%, -50%);
+  animation: sparkleFadeOut 0.85s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  user-select: none;
+}
+
+@keyframes sparkleFadeOut {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(0.6); }
+  50% { opacity: 0.9; transform: translate(calc(-50% + var(--drift-x, 0px)), calc(-50% - 15px)) scale(1.2); }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--drift-x, 0px)), calc(-50% - 30px)) scale(0.3); }
+}
+
 .sparkle-particle {
   position: absolute;
   pointer-events: none;
-  border-radius: 50%;
   animation: floatUpFade 4s ease-in infinite;
 }
 
 @keyframes floatUpFade {
-  0% {
-    transform: translateY(0) scale(0.4) rotate(0deg);
-    opacity: 0;
-  }
-  30% {
-    opacity: 0.85;
-  }
-  100% {
-    transform: translateY(-90px) scale(1) rotate(180deg);
-    opacity: 0;
-  }
+  0% { transform: translateY(0) scale(0.4); opacity: 0; }
+  30% { opacity: 0.85; }
+  100% { transform: translateY(-90px) scale(1); opacity: 0; }
+}
+
+.fairy-footer {
+  text-align: center;
+  padding: 14px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  font-weight: 600;
 }
