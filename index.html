@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Tebrikler! ✨ Peri Bahçesi Kutlaması</title>
+  
+  <!-- Google Fonts: Fredoka (Başlıklar) & Nunito (Metinler) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Arka Plan Peri Işıltıları & Parıltılar -->
+  <div class="sparkles-container" id="sparkles-container" aria-hidden="true"></div>
+  <div class="fairy-dust" aria-hidden="true"></div>
+
+  <!-- Ana Kapsayıcı -->
+  <main class="page-container">
+    
+    <!-- 1. BÖLÜM: HERO -->
+    <section id="hero" class="fairy-section hero-section">
+      <div class="card glass-card hero-card">
+        <div class="badge-pill">🌸 Harika Bir Haberimiz Var! ✨</div>
+        <h1 class="hero-title">Tebrikler En Güzel Kalpli İnsan! 🎉</h1>
+        <p class="hero-subtitle">Yeni işin, yeni başarın ve parıldayan geleceğin kutlu olsun!</p>
+        
+        <div class="character-slot">
+          <!-- karakter.png eklendiğinde burada gösterilecek -->
+          <div class="character-wrapper" id="character-wrapper">
+            <img src="karakter.png" alt="Kutlama Karakteri" class="character-img" onerror="this.style.display='none'; document.getElementById('character-placeholder').style.display='flex';">
+            <div id="character-placeholder" class="character-placeholder">
+              <span class="placeholder-icon">🧚‍♀️</span>
+              <span class="placeholder-text">Karakterin yeri hazır ✨<br><small>(karakter.png bekleniyor)</small></span>
+            </div>
+          </div>
+        </div>
+
+        <button class="fairy-btn" id="start-journey-btn">
+          <span>Kutlamayı Başlat ✨</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 2. BÖLÜM: BİZİM HİKÂYEMİZ -->
+    <section id="our-story" class="fairy-section">
+      <div class="section-header">
+        <span class="section-tag">🤍 Kalbimizden Bir Parça</span>
+        <h2 class="section-title">Bizim Hikâyemiz</h2>
+        <p class="section-desc">Kahkahalar, dertleşmeler ve unutulmaz anılarla dolu yolculuğumuz...</p>
+      </div>
+      <div class="card glass-card story-card">
+        <div class="placeholder-box">
+          <span class="box-icon">📖</span>
+          <h3>Anılar ve Özel Mesajlar</h3>
+          <p>Bu alanda beraber geçtiğimiz yollar ve tatlı hatıralarımız yer alacak.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. BÖLÜM: ZORLUK YOLCULUĞU -->
+    <section id="journey" class="fairy-section">
+      <div class="section-header">
+        <span class="section-tag">💪 Asla Pes Etmeyen Ruhun</span>
+        <h2 class="section-title">Zorluk Yolculuğu</h2>
+        <p class="section-desc">Çalıştın, çabaladın, inandın ve başardın!</p>
+      </div>
+      <div class="card glass-card journey-card">
+        <div class="placeholder-box">
+          <span class="box-icon">🌟</span>
+          <h3>Adım Adım Başarıya</h3>
+          <p>Mülakatlar, uykusuz geceler, stresli anlar ve gelen o mutlu "Kabul Edildiniz" anı!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. BÖLÜM: KUPONLAR -->
+    <section id="coupons" class="fairy-section">
+      <div class="section-header">
+        <span class="section-tag">🎁 Sana Özel Hediyeler</span>
+        <h2 class="section-title">Dostluk Kuponları</h2>
+        <p class="section-desc">İstediğin zaman bozdurabileceğin küçük sürprizler.</p>
+      </div>
+      <div class="card glass-card coupons-card">
+        <div class="placeholder-box">
+          <span class="box-icon">🎟️</span>
+          <h3>Özel Haklar & İkramlar</h3>
+          <p>Kahve ısmarlama, dert dinleme ve kutlama yemeği kuponları buraya gelecek.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. BÖLÜM: FİNAL -->
+    <section id="final" class="fairy-section final-section">
+      <div class="card glass-card final-card">
+        <span class="final-sparkle">💖✨</span>
+        <h2 class="section-title">Seninle Gurur Duyuyorum!</h2>
+        <p class="final-text">
+          Yeni işinde harika işler başaracağına adım gibi eminim. İyi ki varsın!
+        </p>
+        <button class="fairy-btn celebrate-btn" id="celebrate-btn">
+          <span>Konfeti Yağmuru Patlat! 🎊</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="fairy-footer">
+    <p>En yakın dostundan sevgiyle ve peri tozuyla hazırlandı 🧚✨</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
