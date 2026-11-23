@@ -20,10 +20,10 @@
   --accent-shadow: rgba(255, 179, 209, 0.35);
   --fairy-glow: rgba(201, 184, 255, 0.45);
 
-  /* Yazı Tipleri */
-  --font-heading: 'Fredoka', cursive, sans-serif;
-  --font-body: 'Nunito', sans-serif;
-  --font-accent: 'Pacifico', cursive;
+  /* Yazı Tipleri - 100% Türkçe (ş, ı, ğ, İ, ç, ö, ü) Karakter Uyumlu */
+  --font-heading: 'Baloo 2', 'Comfortaa', 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-accent: 'Caveat', 'Comfortaa', cursive, sans-serif;
 
   /* Yumuşak Yuvarlak Hatlar */
   --radius-sm: 14px;
@@ -1206,33 +1206,6 @@ body {
   0% { transform: rotate(-4deg) translateY(0); }
   50% { transform: rotate(4deg) translateY(-6px) scale(1.04); }
   100% { transform: rotate(-4deg) translateY(0); }
-}
-
-/* Bölüm İçi Yer Tutucular */
-.placeholder-box {
-  background: rgba(255, 255, 255, 0.65);
-  border: 2px dashed rgba(201, 184, 255, 0.7);
-  border-radius: var(--radius-md);
-  padding: 24px 16px;
-  text-align: center;
-}
-
-.placeholder-box .box-icon {
-  font-size: 2.2rem;
-  display: inline-block;
-  margin-bottom: 8px;
-}
-
-.placeholder-box h3 {
-  font-family: var(--font-heading);
-  font-size: 1.15rem;
-  color: #432E47;
-  margin-bottom: 6px;
-}
-
-.placeholder-box p {
-  font-size: 0.88rem;
-  color: var(--text-secondary);
 }
 
 /* Final Bölümü */
